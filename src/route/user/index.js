@@ -4,7 +4,7 @@ const { getAllUser, getOneUser, createUser } = require('../../controller/user');
 const router = Router();
 
 router.get('/', getAllUser);
-router.get('/:id', getOneUser);
+router.get('/:user', getOneUser);
 router.post('/', createUser);
 
 module.exports = router;
