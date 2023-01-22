@@ -86,16 +86,12 @@ const getAllUser = async (req, res, next) => {
 };
 
 const getOneUser = async (req, res, next) => {
-    console.log(req.params)
-    res.status(200).send("Return the getOneUser")
     try {
-        const user = await userModel.find({ _id: req.params.id });
+        const { id } = req.params;
 
-        if (typeof (user) !== 'undefined') {
-            res.status(200).json(user);
-        } else {
-            res.status(404).json({ message: "not found" })
-        }
+        const user = await userModel.findById(id);
+
+        return res.status(200).json(user);
     } catch (error) {
         console.log(error);
         next(error);
