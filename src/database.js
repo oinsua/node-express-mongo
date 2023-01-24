@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { MONGODB_URI } = require('./config');
+require('./event/index');
 
 mongoose.set('strictQuery', true); // save all file that are in schema
 

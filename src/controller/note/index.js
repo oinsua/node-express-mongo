@@ -1,4 +1,5 @@
 const noteModel = require("../../model/note.model");
+const eventEmitter = require('../../event/index');
 
 const createNote = async (req, res, next) => {
     try {
@@ -74,7 +75,7 @@ const getOneNote = async (req, res, next) => {
 const getNotes = async (req, res, next) => {
     try {
         const arrayNotes = await noteModel.find({});
-        console.log('arrayNotes: ', arrayNotes)
+        eventEmitter.emit('showArrayNotes', arrayNotes);//simple use of events emitter
         res.status(200).json(arrayNotes);
     } catch (error) {
         console.log(error);
