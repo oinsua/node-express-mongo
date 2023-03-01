@@ -25,7 +25,17 @@ const getRole = async ({ id }) => {
     return null;
 };
 
+const getPermissionUser = async ({ id }) => {
+    console.log('id: ', id)
+    if (typeof (id) !== 'undefined') {
+        const rol = await rolModel.findById(id);
+        return rol.permission;
+    }
+    return '';
+}
+
 module.exports = {
     getRoles,
-    getRole
+    getRole,
+    getPermissionUser
 };

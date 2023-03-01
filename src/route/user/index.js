@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { getAllUser, getOneUser, createUser, updateUser, deleteUser } = require('../../controller/user');
-const { loginUser } = require('../../controller/user/login');
+const { loginUser, refreshToken } = require('../../controller/user/login');
 
 const router = Router();
 
@@ -43,5 +43,9 @@ router.post('/login',
             .matches(/\d/).withMessage('must contain a number'),
     ],
     loginUser);
+router.post('/refreshToken', [
+    check('refreshToken').isLength({ min: 20 }).withMessage('must be at least 3 chars long'),
+],
+    refreshToken)
 
 module.exports = router;
